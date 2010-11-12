@@ -81,6 +81,10 @@ node [width=0.375,height=0.25,shape=box];
     def leaf o; end
     alias :visit_Symbol :leaf
     alias :visit_String :leaf
+    alias :visit_Regexp :leaf
+    alias :visit_Fixnum :leaf
+    alias :visit_Bignum :leaf
+    alias :visit_Float :leaf
 
     def edge sym
       @callstack.push sym
