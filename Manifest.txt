@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/awkward
+lib/awkward.rb
+test/test_awkward.rb
