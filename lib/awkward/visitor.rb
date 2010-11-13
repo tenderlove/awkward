@@ -1,13 +1,8 @@
 module Awkward
   class Visitor
-    class Node < Struct.new :object # :nodoc:
-      def name
-        object.class.name
-      end
-
-      private
-      def escape string
-        string.gsub '"', '\"'
+    class Node < Struct.new :object, :name, :value # :nodoc:
+      def initialize object
+        super(object, object.class.name)
       end
     end
 
@@ -46,12 +41,12 @@ module Awkward
     def to_dot
       dot = <<-eodot
 digraph "Graph" {
-node [width=0.375,height=0.25,shape=box];
+node [width=0.375,height=0.25,shape = "record"];
       eodot
 
       nodes.each do |node|
         dot.concat <<-eonode
-        #{node.object_id} [label="#{node.name}"];
+        #{node.object_id} [label="<f0> #{[node.name, node.value].compact.join('|')}"];
         eonode
       end
 
@@ -78,13 +73,20 @@ node [width=0.375,height=0.25,shape=box];
       end
     end
 
-    def leaf o; end
-    alias :visit_Symbol :leaf
-    alias :visit_String :leaf
-    alias :visit_Regexp :leaf
-    alias :visit_Fixnum :leaf
-    alias :visit_Bignum :leaf
-    alias :visit_Float :leaf
+
+    def escape string
+      string.gsub '"', '\"'
+    end
+
+    def visit_Symbol o
+      @seen[o.object_id].value = escape(o.to_s)
+    end
+
+    alias :visit_String :visit_Symbol
+    alias :visit_Regexp :visit_Symbol
+    alias :visit_Fixnum :visit_Symbol
+    alias :visit_Bignum :visit_Symbol
+    alias :visit_Float :visit_Symbol
 
     def edge sym
       @callstack.push sym
