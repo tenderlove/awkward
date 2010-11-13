@@ -1,7 +1,8 @@
-History.txt
+.autotest
+CHANGELOG.rdoc
 Manifest.txt
-README.txt
+README.rdoc
 Rakefile
-bin/awkward
 lib/awkward.rb
+lib/awkward/visitor.rb
 test/test_awkward.rb
