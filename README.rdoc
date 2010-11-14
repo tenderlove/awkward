@@ -28,11 +28,15 @@ must teach it by implementing a subclass of Awkward::Visitor.
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* You'll need to install Graphviz.
+
+=== Mac Os X
+
+   brew install graphviz
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+   gem install awkward
 
 == LICENSE:
 
