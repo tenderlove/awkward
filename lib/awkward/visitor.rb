@@ -56,6 +56,7 @@ node [width=0.375,height=0.25,shape = "record"];
         eoedge
       end
       dot + "}"
+      
     end
 
     private
@@ -72,7 +73,6 @@ node [width=0.375,height=0.25,shape = "record"];
         edge(i) { accept v }
       end
     end
-
 
     def escape string
       string.gsub '"', '\"'
