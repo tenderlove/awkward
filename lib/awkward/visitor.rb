@@ -73,6 +73,9 @@ node [width=0.375,height=0.25,shape = "record"];
       end
     end
 
+    def visit_NilClass o
+      nil
+    end
 
     def escape string
       string.gsub '"', '\"'
