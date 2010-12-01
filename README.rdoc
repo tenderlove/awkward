@@ -17,7 +17,7 @@ must teach it by implementing a subclass of Awkward::Visitor.
   class MyVisitor < Awkward::Visitor
     def visit_My_Object object
       edge(:some_method) do
-        visit object.some_method
+        accept object.some_method
       end
     end
   end
