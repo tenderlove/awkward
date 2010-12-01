@@ -24,7 +24,13 @@ must teach it by implementing a subclass of Awkward::Visitor.
 
   viz = MyVisitor.new
   viz.accept my_object
-  puts viz.to_dot
+  File.open('my_object.dot', 'w') do |f|
+    f << viz.dot
+  end
+
+Then, on the command line:
+
+  $ dot -Tgif -O my_object.dot # Generates an image named my_object.dot.gif
 
 == REQUIREMENTS:
 
