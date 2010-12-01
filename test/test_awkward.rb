@@ -17,6 +17,7 @@ class TestAwkward < Test::Unit::TestCase
       "adsfadsfadsf",
       1.2,
       :foo,
+      nil,
     ].each do |value|
       @awkward.accept value
     end
