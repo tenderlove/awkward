@@ -1,6 +1,12 @@
 require "test/unit"
 require "awkward"
 
+class Generic
+  def initialize
+    @foo, @bar, @baz = 1, 2 ,3
+  end
+end
+
 class TestAwkward < Test::Unit::TestCase
   def setup
     @tree = {
@@ -31,6 +37,16 @@ class TestAwkward < Test::Unit::TestCase
   def test_edges
     @awkward.accept @tree
     assert_equal 7, @awkward.edges.length
+  end
+
+  def test_edges_for_object
+    @awkward.accept Generic.new
+    assert_equal 3, @awkward.edges.length
+  end
+
+  def test_nodes_for_object
+    @awkward.accept Generic.new
+    assert_equal 4, @awkward.nodes.length
   end
 
   def test_edges_have_nodes

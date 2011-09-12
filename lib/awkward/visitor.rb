@@ -58,7 +58,21 @@ node [width=0.375,height=0.25,shape = "record"];
       dot + "}"
     end
 
+    def method_missing method, *args, &block
+      if method.to_s.start_with? "visit_"
+        visit_Object *args
+      else
+        super
+      end
+    end
+
     private
+
+    def visit_Object o
+      o.instance_variables.each do |k|
+        edge(k) { accept o.instance_variable_get(k) }
+      end
+    end
 
     def visit_Hash o
       o.each_with_index do |(k,v),i|
