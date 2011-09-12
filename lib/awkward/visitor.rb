@@ -60,13 +60,20 @@ node [width=0.375,height=0.25,shape = "record"];
 
     def method_missing method, *args, &block
       if method.to_s.start_with? "visit_"
-        visit_Object *args
+        o = args[0]
+        o.kind_of?(Struct)? visit_Struct(o) : visit_Object(o)
       else
         super
       end
     end
 
     private
+
+    def visit_Struct o
+      o.each_pair do |k, v|
+        edge(k) { accept v }
+      end
+    end
 
     def visit_Object o
       o.instance_variables.each do |k|

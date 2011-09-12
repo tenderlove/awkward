@@ -7,6 +7,8 @@ class Generic
   end
 end
 
+GenericStruct = Struct.new :foo, :bar, :baz
+
 class TestAwkward < Test::Unit::TestCase
   def setup
     @tree = {
@@ -46,6 +48,16 @@ class TestAwkward < Test::Unit::TestCase
 
   def test_nodes_for_object
     @awkward.accept Generic.new
+    assert_equal 4, @awkward.nodes.length
+  end
+
+  def test_edges_for_struct
+    @awkward.accept GenericStruct.new 1, 2, 3
+    assert_equal 3, @awkward.edges.length
+  end
+
+  def test_nodes_for_struct
+    @awkward.accept GenericStruct.new 1, 2, 3
     assert_equal 4, @awkward.nodes.length
   end
 
