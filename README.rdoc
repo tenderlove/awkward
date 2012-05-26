@@ -5,8 +5,9 @@
 == DESCRIPTION:
 
 Awkward helps you walk your Object Graph and output a dot file suitable for
-viewing in Graphviz.  Awkward doesn't know how to visit your objects, so you
-must teach it by implementing a subclass of Awkward::Visitor.
+viewing in Graphviz. Awkward doesn't know how to visit your objects. By
+default it will create nodes for each instance variable of an object. However,
+you can teach it more by implementing a subclass of Awkward::Visitor.
 
 == FEATURES/PROBLEMS:
 
